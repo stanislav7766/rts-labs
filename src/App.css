@@ -1,0 +1,57 @@
+html,
+body {
+  overflow: auto;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-moz-keyframes fadein {
+  /* Firefox */
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes fadein {
+  /* Safari and Chrome */
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-o-keyframes fadein {
+  /* Opera */
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.light-overlay {
+  background-color: rgba(15, 15, 15, 0.425);
+  min-height: 100vh;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  height: auto;
+}
