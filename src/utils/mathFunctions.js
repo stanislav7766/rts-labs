@@ -1,3 +1,4 @@
+import {WpkNTable} from './WpkNTable';
 const calcSumArr = arr => arr.reduce((acc, el) => (acc += el), 0);
 const calcSignal = (t, w, ampl, phi) => Math.sin(w * t + phi) * ampl;
 export const correlationStabilizer = (arr, max = Math.max(...arr), min = Math.min(...arr)) =>
@@ -37,6 +38,26 @@ export const calcDft = x => {
     for (let k = 0; k < N; k++) {
       fourierReal[p] += x[k] * Math.cos((-2 * Math.PI * p * k) / N);
       fourierImagine[p] += x[k] * Math.sin((-2 * Math.PI * p * k) / N);
+    }
+    fourierFinal[p] = Math.sqrt(fourierReal[p] ** 2 + fourierImagine[p] ** 2);
+  }
+
+  return [fourierReal, fourierImagine, fourierFinal];
+};
+
+export const calcDftViaTable = x => {
+  const N = x.length;
+  const fourierReal = Array(N).fill(0);
+  const fourierImagine = Array(N).fill(0);
+  const fourierFinal = Array(N).fill(0);
+
+  const wpkNTable = WpkNTable(N);
+  wpkNTable.createTable();
+
+  for (let p = 0; p < N; p++) {
+    for (let k = 0; k < N; k++) {
+      fourierReal[p] += x[k] * wpkNTable.get(p, k).wReal;
+      fourierImagine[p] += x[k] * wpkNTable.get(p, k).wImagine;
     }
     fourierFinal[p] = Math.sqrt(fourierReal[p] ** 2 + fourierImagine[p] ** 2);
   }

@@ -5,7 +5,7 @@ import MakePlot from '../../components/plot';
 import ButtonGroup from '../../components/common/ButtonGroup';
 import Greeting21 from '../../components/greeting/Greeting21';
 import {withTransformDots} from '../../utils/withTransformDots';
-import {makeSignal, calcDft} from '../../utils/mathFunctions';
+import {makeSignal, calcDftViaTable} from '../../utils/mathFunctions';
 
 const Lab21 = () => {
   const [data, setData] = useState({
@@ -27,7 +27,7 @@ const Lab21 = () => {
     const n = Number(data.n);
 
     const function_y_axis = makeSignal({N, n, phi, amplitude});
-    const [dftReal, dftImagine, dftFinal] = withTransformDots(calcDft, N)(function_y_axis);
+    const [dftReal, dftImagine, dftFinal] = withTransformDots(calcDftViaTable, N)(function_y_axis);
     setDots1(dftReal);
     setDots2(dftImagine);
     setDots3(dftFinal);
